@@ -1,9 +1,6 @@
 import arcade
 
-def main():
-    arcade.open_window(600,600,"Drawing example")
-    arcade.set_background_color(arcade.csscolor.SKY_BLUE)
-    arcade.start_render()
+def trees():
     arcade.draw_lrtb_rectangle_filled(0, 599, 300, 0, arcade.csscolor.GREEN)
     arcade.draw_rectangle_filled(100, 320, 20, 60, arcade.csscolor.SIENNA)
     arcade.draw_circle_filled(100, 350, 30, arcade.csscolor.DARK_GREEN)
@@ -14,13 +11,7 @@ def main():
     arcade.draw_rectangle_filled(400, 320, 20, 60, arcade.csscolor.SIENNA)
     arcade.draw_triangle_filled(400, 400, 370, 320, 430, 320, arcade.csscolor.DARK_GREEN)
     arcade.draw_rectangle_filled(500, 320, 20, 60, arcade.csscolor.SIENNA)
-    arcade.draw_polygon_filled(((500, 400),
-                            (480, 360),
-                            (470, 320),
-                            (530, 320),
-                            (520, 360)
-                            ),
-                           arcade.csscolor.DARK_GREEN)
+    arcade.draw_polygon_filled(((500, 400), (480, 360), (470, 320), (530, 320), (520, 360)), arcade.csscolor.DARK_GREEN)
     # Draw a sun
     arcade.draw_circle_filled(500, 550, 40, arcade.color.YELLOW)
 
@@ -35,9 +26,30 @@ def main():
     arcade.draw_line(500, 550, 550, 500, arcade.color.YELLOW, 3)
     arcade.draw_line(500, 550, 450, 600, arcade.color.YELLOW, 3)
     arcade.draw_line(500, 550, 450, 500, arcade.color.YELLOW, 3)
-    arcade.draw_text("Arbor Day - Plant a Tree!",
-                 150, 230,
-                 arcade.color.BLACK, 24)
+    arcade.draw_text("Arbor Day - Plant a Tree!", 50, 230, arcade.color.BLACK, 24)
+    
+def board():
+    start_color = arcade.csscolor.WHITE
+    for i in range(50,550+1,100):
+        if start_color == arcade.csscolor.WHITE:
+            start_color = arcade.csscolor.BLACK
+        else:
+            start_color = arcade.csscolor.WHITE
+        color = start_color
+        for j in range(50,550+1,100):
+            arcade.draw_rectangle_filled(j,i,100,100,color)
+            if color == arcade.csscolor.WHITE:
+                    color = arcade.csscolor.BLACK
+            else:
+                color = arcade.csscolor.WHITE
+            
+
+def main():
+    arcade.open_window(600,600,"Drawing example")
+    arcade.set_background_color(arcade.csscolor.SKY_BLUE)
+    arcade.start_render()
+    # trees()
+    board()
     arcade.finish_render()
     arcade.run()
 
